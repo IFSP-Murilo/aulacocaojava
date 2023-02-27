@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+
+<title th:text="${titulo}">Insert title here</title>
+</head>
+<body>
+	<section layout:fragment="conteudo">
+		<div class="app-content">
+			<div class="app-titulo">
+				<div>
+					<h3 th:text="${titulo}">
+						Título <i class="fa fa-tachometer" aria-hidden="true"></i>
+					</h3>
+				</div>
+				<ul class="app-breadcrumb breadcrumb">
+					<li class="breadcrumb-item"><i class="fa fa-home"
+						aria-hidden="true"></i></li>
+					<li class="breadcrumb-item"><a href="@{/home}">Dashboard</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

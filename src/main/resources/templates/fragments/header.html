@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+</head>
+<body>
+    <header class="app-header" th:fragment="header">
+       <div class="app-leftarea">
+           <h3>SISTEMA<span>IFSP</span></h3>
+       </div>
+       <div class="app-toggle">
+           <i class="fa fa-bars" id="sidebar_toggle"></i>
+       </div>
+       <div class="profile">
+           <img th:src="@{/img/perfil.png}" alt="foto"/>
+           <span>Francisco Santos</span>
+           <div class="logout">
+             <i class="fa fa-sign-out"></i> 
+           </div>
+       </div>
+    
+    </header>
+
+</body>
+</html>

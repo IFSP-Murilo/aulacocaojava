@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.rtl.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap-grid.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap-reboot.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap-reboot.rtl.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap-utilities.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap-utilities.rtl.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/css/font-awesome.css}"/>
+<title>Insert title here</title>
+</head>
+<body class="app">
+	
+	<header th:replace="fragments/header :: header"></header>
+
+    <aside>
+       <nav th:replace="fragments/sidebar :: nav-sidebar"></nav>
+    </aside>
+
+    <main>
+       <section layout:fragment="conteudo"></section>
+    </main>
+
+
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.bundle.js}"></script>
+    <script th:src="@{/jquery/jquery-3.6.0.js}"></script>
+    <script>
+       $(document).ready(function(){
+    	   $('#sidebar_toggle').on('click',function(){
+    		   $('.sidebar').toggleClass('active');
+    		   $('.app').toggleClass('active');
+    	   });
+       });
+       
+    
+    
+    </script>
+    
+    
+    <th:block layout:fragment="javascript-extra"></th:block>
+</body>
+</html>

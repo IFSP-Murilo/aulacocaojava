@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatorio_professor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d7610e6-9444-4a34-9884-232d50e77a69">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[IlBST0ZFU1NPUiIgQVMgLDE0MSwzMSwyZGE4YmU5ZC01M2ZlLTRmZjctYTQ2OS0yODAxNzE4Zjdj
+YjQ7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConexaoOracle"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT "ID_PROFESSOR",
+	"COD_PROFESSOR",
+	"NOME_PROFESSOR"
+FROM "PROFESSOR"]]>
+	</queryString>
+	<field name="ID_PROFESSOR" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="ID_PROFESSOR"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID_PROFESSOR"/>
+	</field>
+	<field name="COD_PROFESSOR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="COD_PROFESSOR"/>
+		<property name="com.jaspersoft.studio.field.label" value="COD_PROFESSOR"/>
+	</field>
+	<field name="NOME_PROFESSOR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NOME_PROFESSOR"/>
+		<property name="com.jaspersoft.studio.field.label" value="NOME_PROFESSOR"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="30" uuid="eb31082a-47c4-4f9c-b6b7-bb5bf2a2b67a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aec3562c-98a6-4a15-ac3c-d6a45bd83ad3"/>
+				</reportElement>
+				<text><![CDATA[ID_PROFESSOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="30" uuid="fda884aa-1a76-449e-ac84-d4ff84b178cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57efb4e8-cc5b-407e-91a4-a35e3082e2f5"/>
+				</reportElement>
+				<text><![CDATA[COD_PROFESSOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="30" uuid="fe93ce30-0366-43f0-844a-6700515e6a8a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06952a53-ff38-4066-99c2-b7756824f6cd"/>
+				</reportElement>
+				<text><![CDATA[NOME_PROFESSOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="30" uuid="aa5cef22-ccb5-45da-9403-340d13d47592">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aec3562c-98a6-4a15-ac3c-d6a45bd83ad3"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{ID_PROFESSOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="30" uuid="16352575-fb91-44be-be5c-29c5a982a36a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57efb4e8-cc5b-407e-91a4-a35e3082e2f5"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{COD_PROFESSOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="30" uuid="74d20553-8bfb-460d-8f3e-861b3add1218">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06952a53-ff38-4066-99c2-b7756824f6cd"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{NOME_PROFESSOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
