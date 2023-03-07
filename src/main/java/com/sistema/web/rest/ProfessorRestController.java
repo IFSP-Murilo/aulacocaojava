@@ -144,7 +144,7 @@ public class ProfessorRestController {
 	
 	@GetMapping(value = "/lista")
 	public List<Professor> lista(
-			@RequestParam(value="keyword", required = false ) String keyword) {
+		@RequestParam(value="keyword", required = false ) String keyword) {
 		
 		List<Professor> professores = new ArrayList<>();
 		
