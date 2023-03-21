@@ -77,7 +77,7 @@ public class Cidade {
 	}
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "cidade",fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToMany(mappedBy = "cidade",fetch = FetchType.LAZY)
 	public Set<Aluno> getListaAluno() {
 		return listaAluno;
 	}
@@ -85,7 +85,5 @@ public class Cidade {
 	public void setListaAluno(Set<Aluno> listaAluno) {
 		this.listaAluno = listaAluno;
 	}
-	
-	
 
 }

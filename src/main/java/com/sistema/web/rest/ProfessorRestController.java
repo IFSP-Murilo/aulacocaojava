@@ -15,10 +15,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,61 +92,89 @@ public class ProfessorRestController {
 // ROTINAS DE ALTERAÇÃO
 	
 	@GetMapping(value="/alterar/{id}")
-	public String showFormAlterar(@PathVariable("id") Long id, Model model) {
+	public ResponseEntity<?> showFormAlterar(@PathVariable("id") Long id) {
 		Professor professor = professorService.consultarPorId(id);
-	
-		model.addAttribute("titulo","Alterar Professor");
-		model.addAttribute("professor", professor);
-		return "/professor/alterar";
+
+         mensagemRest.setError(false);
+         mensagemRest.setFields(null);
+		 mensagemRest.setStatus(HttpStatus.OK.value());
+		 mensagemRest.setMensagem("");
+		 mensagemRest.setObject(professor);
+		 
+		 return ResponseEntity.ok().body(mensagemRest);
 	}
 	
 	
-	@PostMapping(value = "/alterar/{id}")
-	public String alterar(@PathVariable("id") Long id, @Valid Professor professor, BindingResult result,  RedirectAttributes attr, Model model) {
+	@PutMapping(value = "/alterar/{id}")
+	public ResponseEntity<?> alterar(@PathVariable("id") Long id, @Valid Professor professor, BindingResult result,  RedirectAttributes attr, Model model) {
 		if (result.hasErrors()) {
-			 return "/professor/alterar";
-		 }
-		professorService.alterar(id, professor);
-		model.addAttribute("titulo", "Alterar Professor");
-		model.addAttribute("professor", new Professor());
-		attr.addFlashAttribute("success", "Registro alterado com sucesso");
-		return "redirect:/professor/lista";
+			 List<Fields> lista = result.getFieldErrors()
+					                    .stream()
+					                    .map(erro->{
+					                    	String mensagem = messageSource.getMessage(erro, LocaleContextHolder.getLocale());
+					                    	Fields field = new Fields();
+					                    	field.setNameField(erro.getField());
+					                    	field.setMessageErrorField(mensagem);
+					                    	field.setError(true);
+					                    	return field;
+					                    }).collect(Collectors.toList());
+			mensagemRest.setStatus(HttpStatus.BAD_REQUEST.value());
+			mensagemRest.setMensagem("Erro no cadastro do Professor!");
+			mensagemRest.setObject(professor);
+			mensagemRest.setError(true);
+			mensagemRest.setFields(lista);
+		 } else {
+			 professor = professorService.incluir(professor);
+            mensagemRest.setError(false);
+            mensagemRest.setFields(null);
+			 mensagemRest.setStatus(HttpStatus.OK.value());
+			 mensagemRest.setMensagem("Professor Cadastrado com sucesso!");
+			 mensagemRest.setObject(professor);
+		 } 
+		 return ResponseEntity.ok().body(mensagemRest);
 	}
 
 // ROTINAS DE EXCLUSÃO
 	
-	@GetMapping(value = "/excluir/{id}")
-	public String showFormExcluir(@PathVariable("id") Long id, Model model) {
-		Professor professor = professorService.consultarPorId(id);
-		model.addAttribute("titulo","Excluir Professor");
-		model.addAttribute("professor", professor);
-		return "/professor/excluir";
+	@DeleteMapping(value = "/excluir/{id}")
+	public ResponseEntity<?> showFormExcluir(@PathVariable("id") Long id) {
+		 professorService.excluir(id);
+		 mensagemRest.setError(false);
+         mensagemRest.setFields(null);
+			 mensagemRest.setStatus(HttpStatus.OK.value());
+			 mensagemRest.setMensagem("Professor excluido com sucesso!");
+			 mensagemRest.setObject(null);
+		 return ResponseEntity.ok().body(mensagemRest);
 	}
 	
-	@PostMapping(value = "/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, Model model) {
-		professorService.excluir(id);
-		model.addAttribute("titulo", "Excluir Professor");
-		model.addAttribute("professor", new Professor());
-		return "/professor/excluir";
-	}
+	//@DeleteMapping(value = "/excluir/{id}")
+	//public String excluir(@PathVariable("id") Long id, Model model) {
+	//	professorService.excluir(id);
+	//	model.addAttribute("titulo", "Excluir Professor");
+	//	model.addAttribute("professor", new Professor());
+	//	return "/professor/excluir";
+	//}
 	
 
 // ROTINA DE CONSULTA	
 	
 	@GetMapping(value = "/consultar-por-id/{id}")
-	public String consultarPorId(@PathVariable("id") Long id, Model model) {
+	public ResponseEntity<?> consultarPorId(@PathVariable("id") Long id) {
 		Professor professor = professorService.consultarPorId(id);
-		model.addAttribute("titulo","Consultar Professor");
-		model.addAttribute("professor", professor);
-		return "/professor/consultar";
-	}
 
+         mensagemRest.setError(false);
+         mensagemRest.setFields(null);
+		 mensagemRest.setStatus(HttpStatus.OK.value());
+		 mensagemRest.setMensagem("");
+		 mensagemRest.setObject(professor);
+		 
+		 return ResponseEntity.ok().body(mensagemRest);
+	}
 	
 	
 	@GetMapping(value = "/lista")
 	public List<Professor> lista(
-		@RequestParam(value="keyword", required = false ) String keyword) {
+			@RequestParam(value="keyword", required = false ) String keyword) {
 		
 		List<Professor> professores = new ArrayList<>();
 		
